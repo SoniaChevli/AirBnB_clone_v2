@@ -68,8 +68,8 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("invalid value")
                         continue   # skip invalid values
-                    if type(getattr(new_instance, kname)) == type(kvalue):
-                        setattr(new_instance, kname, kvalue)
+                    #if type(getattr(new_instance, kname)) == type(kvalue):
+                    setattr(new_instance, kname, kvalue)
             new_instance.save()
             print(new_instance.id)
 
