@@ -3,7 +3,7 @@
     This module defines the BaseModel class
 '''
 import uuid
-from datetime import datetime
+import datetime
 import models
 
 from sqlalchemy import Column, Integer, String, DateTime
