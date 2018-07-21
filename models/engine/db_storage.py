@@ -1,4 +1,3 @@
-
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
@@ -30,32 +29,30 @@ class DBStorage:
         "query the current db for all objects depending on cls type"
         a = {}
         if cls:
-        for i in self.__session.query(cls).all():
-            a["{}.{}".format(i.__class__.__name__, i.id)] = i
+            for i in self.__session.query(cls).all():
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
         else:
             for i in self.__session(User, State, City, Amenity, Place, Review).all():
-            a["{}.{}".format(i.__class__.__name__, i.id)] = i
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
         return a
-    
+
     def new(self, obj):
         "add the object to the current database session"
         self.__session.add(obj)
-    
+
     def save(self):
         "commit all changes of the current db session"
         self.__session.commit()
-    
+
     def delete(self, obj=None):
         "delete obj from the current db session if not none"
         if obj:
             cls = models.classes[obj.__class__.__name__]
             query = self.__session.query(cls).filter(cls.id == obj.id).first()
             query.delete(synchronize_session=False)
-    
+
     def reload(self):
         "create all tables in the db"
         Base.metadata.create_all(self.__engine)
         Session = scoped_session(sessionmaker(bind=self.__engine, expire_on_commit=False))
         self.__session = Session()
-
-
