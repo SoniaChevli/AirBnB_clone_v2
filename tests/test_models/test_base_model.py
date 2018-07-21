@@ -10,11 +10,11 @@ from io import StringIO
 import sys
 import datetime
 
-
 class TestBase(unittest.TestCase):
     '''
         Testing the base class model.
     '''
+
 
     def setUp(self):
         '''

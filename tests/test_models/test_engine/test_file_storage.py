@@ -10,6 +10,7 @@ import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
+@unittest.skipIf(os.getenv('HBNB_HBNB_TYPE_STORAGE' == "db")
 
 class testFileStorage(unittest.TestCase):
     '''
@@ -101,3 +102,14 @@ class testFileStorage(unittest.TestCase):
             self.assertTrue(True)
         except:
             self.assertTrue(False)
+
+    def test_delete(self):
+        '''
+        tests that an object from the __objects dictionary is properly deleted
+        '''
+        new_state = State()
+        new_state.name = "California"
+        self.storage.new(new_state)
+        self.storage.save()
+        self.storage.delete(new_state)
+        self.assertEqual(self.storage.all(State), {})
