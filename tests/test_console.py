@@ -26,6 +26,16 @@ class test_console(unittest.TestCase):
         ''' create an instance of the HBNBCommand class'''
         return HBNBCommand()
 
+    def create_with_parameters(self):
+        ''' create an instance of HBNBCommand with parameters passed in '''
+        console = self.create()
+        console.onecmd('create State name="California"')
+        self.assertTrue(isinstance(self.capt_out.getvalue(), str))
+        ''' check floats work '''
+        console2 = self.create()
+        console2.onecmd('create Place latitude=37.773972')
+        self.assertTrue(isinstance(self.capt_out.getvalue(), str))
+
     def test_quit(self):
         ''' Test quit exists'''
         console = self.create()
