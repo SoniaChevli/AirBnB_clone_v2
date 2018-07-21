@@ -53,7 +53,6 @@ class HBNBCommand(cmd.Cmd):
                 kname = d.split("=")[0]
                 kvalue = d.split("=")[1]
 
-
                 if hasattr(new_instance, kname):
                 #type conversion
                     if kvalue.startswith("\""):
@@ -68,9 +67,9 @@ class HBNBCommand(cmd.Cmd):
                         kvalue = int(kvalue)
                     else:
                         print("invalid value")
-                        continue # skip invalid values
-                    #if type(getattr(new_instance, kname)) == type(kvalue): 
-                    setattr(new_instance, kname, kvalue)
+                        continue   # skip invalid values
+                    if type(getattr(new_instance, kname)) == type(kvalue):
+                        setattr(new_instance, kname, kvalue)
             new_instance.save()
             print(new_instance.id)
 
