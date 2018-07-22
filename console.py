@@ -43,10 +43,34 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            args = shlex.split(args)
+            args = args.split()
             new_instance = eval(args[0])()
+            for d in args[1:]:
+                kname = d.split("=")[0]
+                kvalue = d.split("=")[1]
+
+                if hasattr(new_instance, kname):
+                #type conversion
+                    if kvalue.startswith("\""):
+                        print("string")
+                        kvalue = kvalue.strip("\"")
+                        kvalue = kvalue.replace("_", " ")
+                    elif "." in kvalue:
+                        print("float")
+                        kvalue = float(kvalue)
+                    elif kvalue.isnumeric():
+                        print("int")
+                        kvalue = int(kvalue)
+                    else:
+                        print("invalid value")
+                        continue # skip invalid values
+                    
+                    if type(getattr(new_instance, kname)) == type(kvalue): 
+                        setattr(new_instance, kname, kvalue)
+            
             new_instance.save()
             print(new_instance.id)
+            
 
         except:
             print("** class doesn't exist **")
