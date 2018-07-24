@@ -7,7 +7,6 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 import os
-from models import storage
 from models.city import City
 
 
@@ -15,7 +14,7 @@ class State(BaseModel, Base):
     '''
         Implementation for the State.
     '''
-    __table_name__ = "states"
+    __tablename__ = "states"
     name = Column(String(128), nullable=False)
 
     if os.getenv("HBNB_TYPE_STORAGE") == 'db':
@@ -23,6 +22,7 @@ class State(BaseModel, Base):
     else:
         @property
         def cities(self):
+            from models import storage
             a = []
             for i in storage.all(City).values():
                 if i.state_id == self.id:
