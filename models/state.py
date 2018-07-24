@@ -8,10 +8,10 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 import os
 from models import storage
-from models import City
+from models.city import City
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     '''
         Implementation for the State.
     '''
