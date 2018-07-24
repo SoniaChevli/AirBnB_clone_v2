@@ -4,6 +4,7 @@
 '''
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float
+from sqlalchemy.orm import relationship
 
 class Place(BaseModel, Base):
     '''
@@ -20,5 +21,13 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
+
+    #should this be wrapped in an if see end of number 9??
+    reviews = relationship("Review", cascade='all, delete', backref='place')
+
+    #number 9 getter attribute??
+    #@property
+    #def reviews(self):
+   #     return self.
 
     amenity_ids = []
