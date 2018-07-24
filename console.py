@@ -44,7 +44,12 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             args = args.split()
-            new_instance = eval(args[0])()
+            print(args)
+            try:
+                new_instance = eval(args[0])()
+            except BaseException as e:
+                print(e)
+            print(new_instance)
             for d in args[1:]:
                 kname = d.split("=")[0]
                 kvalue = d.split("=")[1]
@@ -65,8 +70,8 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("invalid value")
                         continue # skip invalid values
-                    if type(getattr(new_instance, kname)) == type(kvalue): 
-                        setattr(new_instance, kname, kvalue)
+                    #if type(getattr(new_instance, kname)) == type(kvalue): 
+                    setattr(new_instance, kname, kvalue)
             new_instance.save()
             print(new_instance.id)
 
