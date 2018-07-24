@@ -1,10 +1,11 @@
 
 from sqlalchemy import (create_engine)
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 import os
 import models
 from models import State, User, Review, Place, City, Amenity
+
 class DBStorage:
     __engine = None
     __session = None
@@ -18,6 +19,7 @@ class DBStorage:
             os.getenv("HBNB_MYSQL_HOST"),
             os.getenv("HBNB_MYSQL_DB"),
         pool_pre_ping=True)
+
         Base.metadata.create_all(self.__engine) #maybe not necessary?
         if os.getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
@@ -52,6 +54,8 @@ class DBStorage:
     
     def reload(self):
         "create all tables in the db"
-
+        Base.metadata.create_all(self.__engine)
+        Session = scoped_session(sessionmaker(bind=self.__engine, expire_on_commit=False))
+        self.__session = Session()
 
 

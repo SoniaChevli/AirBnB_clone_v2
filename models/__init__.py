@@ -11,11 +11,19 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import os
+from models.engine.db_storage import DBStorage
+
 
 classes = {"User": User, "BaseModel": BaseModel,
            "Place": Place, "State": State,
            "City": City, "Amenity": Amenity,
            "Review": Review}
 
-storage = FileStorage()
-storage.reload()
+
+if os.getenv("HBNB_TYPE_STORAGE") == "db":
+    storage = DBStorage()
+    storage.reload()
+else:
+    storage = FileStorage()
+    storage.reload()
