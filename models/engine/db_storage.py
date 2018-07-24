@@ -19,11 +19,9 @@ class DBStorage:
             os.getenv("HBNB_MYSQL_DB"),
         pool_pre_ping=True))
 
-        Base.metadata.create_all(self.__engine) #maybe not necessary?
+        #Base.metadata.create_all(self.__engine) #maybe not necessary?
         if os.getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
-        Session = sessionmaker(bind=self.__engine)
-        self.__session = Session()
 
     def all(self, cls=None):
         "query the current db for all objects depending on cls type"
@@ -47,9 +45,10 @@ class DBStorage:
     def delete(self, obj=None):
         "delete obj from the current db session if not none"
         if obj:
-            cls = models.classes[obj.__class__.__name__]
-            query = self.__session.query(cls).filter(cls.id == obj.id).first()
-            query.delete(synchronize_session=False)
+            #cls = models.classes[obj.__class__.__name__]
+            #query = self.__session.query(cls).filter(cls.id == obj.id).first()
+            #query.delete(synchronize_session=False)
+            self.__session.delete(obj)
 
     def reload(self):
         "create all tables in the db"

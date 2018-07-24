@@ -49,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
                 new_instance = eval(args[0])()
             except BaseException as e:
                 print(e)
-            print(new_instance)
             for d in args[1:]:
                 kname = d.split("=")[0]
                 kvalue = d.split("=")[1]
