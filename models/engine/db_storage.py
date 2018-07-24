@@ -18,7 +18,7 @@ class DBStorage:
             os.getenv("HBNB_MYSQL_PWD"),
             os.getenv("HBNB_MYSQL_HOST"),
             os.getenv("HBNB_MYSQL_DB"),
-        pool_pre_ping=True)
+        pool_pre_ping=True))
 
         Base.metadata.create_all(self.__engine) #maybe not necessary?
         if os.getenv("HBNB_ENV") == "test":
