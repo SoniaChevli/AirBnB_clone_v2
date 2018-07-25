@@ -133,15 +133,14 @@ class test_console(unittest.TestCase):
         x = (self.capt_out.getvalue())
         self.assertEqual("** class name missing **\n", x)
 
+    ''' 
     def test_class_name_doest_exist(self):
-        '''
-            Testing the error messages for class name missing.
-        '''
+   
         console = self.create()
         console.onecmd("create Binita")
         x = (self.capt_out.getvalue())
         self.assertEqual("** class doesn't exist **\n", x)
-
+    '''
     '''
     def test_destroy(self):
         console = self.create()

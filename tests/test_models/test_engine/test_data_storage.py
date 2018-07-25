@@ -14,7 +14,7 @@ from models.amenity import Amenity
 from models.review import Review
 import os
 
-@unittest.skipIf(os.getenv('HBNB_HBNB_TYPE_STORAGE' != "db"))
+@unittest.skipIf(os.getenv('HBNB_HBNB_TYPE_STORAGE') != 'db', 'skipping db storage')
 
 class testDBStorage(unittest.TestCase):
     '''

@@ -56,19 +56,16 @@ class HBNBCommand(cmd.Cmd):
                 if hasattr(new_instance, kname):
                 #type conversion
                     if kvalue.startswith("\""):
-                        print("string")
                         kvalue = kvalue.strip("\"")
                         kvalue = kvalue.replace("_", " ")
                     elif "." in kvalue:
-                        print("float")
+
                         kvalue = float(kvalue)
                     elif kvalue.isnumeric():
-                        print("int")
+
                         kvalue = int(kvalue)
                     else:
-                        print("invalid value")
                         continue   # skip invalid values
-                    #if type(getattr(new_instance, kname)) == type(kvalue):
                     setattr(new_instance, kname, kvalue)
             new_instance.save()
             print(new_instance.id)

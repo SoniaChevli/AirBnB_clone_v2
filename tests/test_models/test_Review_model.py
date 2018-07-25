@@ -16,9 +16,9 @@ class TestReview(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         ''' initalizing class '''
-        new_review = Review()
-        cls.new_review.place_id = 123
-        cls.new_review.user_id = 321
+        cls.new_review = Review()
+        cls.new_review.place_id = "123"
+        cls.new_review.user_id = "321"
         cls.new_review.text = "Great Place"
 
     def test_Review_inheritance(self):
