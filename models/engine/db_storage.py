@@ -30,7 +30,17 @@ class DBStorage:
             for i in self.__session.query(cls).all():
                 a["{}.{}".format(i.__class__.__name__, i.id)] = i
         else:
-            for i in self.__session(User, State, City, Amenity, Place, Review).all():
+            for i in self.__session.query(User).all():
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
+            for i in self.__session.query(State).all():
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
+            for i in self.__session.query(City).all():
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
+            for i in self.__session.query(Amenity).all():
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
+            for i in self.__session.query(Place).all():
+                a["{}.{}".format(i.__class__.__name__, i.id)] = i
+            for i in self.__session.query(Review).all():
                 a["{}.{}".format(i.__class__.__name__, i.id)] = i
         return a
 
