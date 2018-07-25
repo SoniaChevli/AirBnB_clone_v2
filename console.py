@@ -16,6 +16,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+
     '''
         Contains the entry point of the command interpreter.
     '''
@@ -54,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
                 kvalue = d.split("=")[1]
 
                 if hasattr(new_instance, kname):
-                #type conversion
+                # type conversion
                     if kvalue.startswith("\""):
                         kvalue = kvalue.strip("\"")
                         kvalue = kvalue.replace("_", " ")
@@ -146,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
             return
         for key, val in objects.items():
             if len(args) != 0:
-                if type(val) is eval(args):
+                if isinstance(val, eval(args)):
                     obj_list.append(val)
             else:
                 obj_list.append(val)
@@ -215,7 +216,7 @@ class HBNBCommand(cmd.Cmd):
             return
         for key, val in objects.items():
             if len(args) != 0:
-                if type(val) is eval(args):
+                if isinstance(val, eval(args)):
                     obj_list.append(val)
             else:
                 obj_list.append(val)
