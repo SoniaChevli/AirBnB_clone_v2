@@ -9,8 +9,8 @@ import json
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.state import State
 
-@unittest.skipIf(os.getenv('HBNB_HBNB_TYPE_STORAGE' == "db")
 
 class testFileStorage(unittest.TestCase):
     '''

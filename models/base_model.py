@@ -17,8 +17,10 @@ class BaseModel:
     '''
 
     id = Column("id", String(60), primary_key=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False) #may not need ()
-    updated_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow,
+                        nullable=False) #may not need ()
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow,
+                        nullable=False)
 
     def __init__(self, *args, **kwargs):
         '''
@@ -30,9 +32,9 @@ class BaseModel:
             self.updated_at = datetime.datetime.now()
         else:
             if kwargs["created_at"]: #created at already exists
-                kwargs["created_at"] = datetime.datetime.strptime(kwargs["created_at"],
-                                                     "%Y-%m-%dT%H:%M:%S.%f")
-                kwargs["updated_at"] = datetime.datetime.strptime(kwargs["updated_at"],
+                kwargs["created_at"] = datetime.datetime.strptime(kwargs["\created_at"],
+                                                                  "%Y-%m-%dT%H:%M:%S.%f")
+                kwargs["updated_at"] =datetime.datetime.strptime(kwargs["updated_at"],
                                                      "%Y-%m-%dT%H:%M:%S.%f")
             else:
                 kwargs["id"] = str(uuid.uuid4())
@@ -77,7 +79,7 @@ class BaseModel:
             del cp_dct["_sa_instance_state"]
 
         return (cp_dct)
-    
+
     def delete(self):
         "delete the current instance from the models.storage"
         models.storage.delete(self) #do i need self on this?

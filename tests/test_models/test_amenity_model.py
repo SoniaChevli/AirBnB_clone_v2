@@ -13,25 +13,27 @@ class TestAmenity(unittest.TestCase):
     '''
         Testing Amenity class
     '''
+    @classmethod
+    def setUpClass(cls):
+        '''initalizing class '''
+        cls.new_amenity = Amenity()
+        cls.new_amenity.name = "Air Conditioning"
 
     def test_Amenity_inheritence(self):
         '''
             tests that the Amenity class Inherits from BaseModel
         '''
-        new_amenity = Amenity()
-        self.assertIsInstance(new_amenity, BaseModel)
+        self.assertIsInstance(self.new_amenity, BaseModel)
 
     def test_Amenity_attributes(self):
         '''
             Test that Amenity class had name attribute.
         '''
-        new_amenity = Amenity()
-        self.assertTrue("name" in new_amenity.__dir__())
+        self.assertTrue("name" in self.new_amenity.__dir__())
 
     def test_Amenity_attribute_type(self):
         '''
             Test that Amenity class had name attribute's type.
         '''
-        new_amenity = Amenity()
-        name_value = getattr(new_amenity, "name")
+        name_value = getattr(self.new_amenity, "name")
         self.assertIsInstance(name_value, str)

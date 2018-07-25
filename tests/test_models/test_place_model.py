@@ -13,12 +13,22 @@ class TestUser(unittest.TestCase):
     '''
         Testing Place class
     '''
-
-    def setUp(self):
+    @classmethod
+    def setUp(cls):
         '''
             Creates an instance for place.
         '''
-        self.new_place = Place()
+        cls.new_place = Place()
+        cls.new_place.city_id = "123"
+        cls.new_place.user_id = "321"
+        cls.new_place.name = "Home"
+        cls.new_place.description = "Cozy and warm"
+        cls.new_place.number_rooms = 4
+        cls.new_place.number_bathrooms = 2
+        cls.new_place.max_guest = 8
+        cls.new_place.price_by_night = 80
+        cls.new_place.latitude = 37.774
+        cls.new_place.longitude = -122.431
 
     def TearDown(self):
         pass
