@@ -11,14 +11,16 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class BaseModel:
+
     '''
         Base class for other classes to be used for the duration.
     '''
 
     id = Column("id", String(60), primary_key=True, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow,
-                        nullable=False) #may not need ()
+                        nullable=False)  # may not need ()
     updated_at = Column(DateTime, default=datetime.datetime.utcnow,
                         nullable=False)
 
@@ -31,11 +33,15 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
         else:
-            if kwargs["created_at"]: #created at already exists
-                kwargs["created_at"] = datetime.datetime.strptime(kwargs["created_at"],
-                                                                  "%Y-%m-%dT%H:%M:%S.%f")
-                kwargs["updated_at"] =datetime.datetime.strptime(kwargs["updated_at"],
-                                                     "%Y-%m-%dT%H:%M:%S.%f")
+            if kwargs["created_at"]:  # created at already exists
+                kwargs["created_at"] = datetime.datetime.strptime\
+                                       (kwargs
+                                        ["created_at"],
+                                        "%Y-%m-%dT%H:%M:%S.%f")
+                kwargs["updated_at"] = datetime.datetime.strptime\
+                                       (kwargs
+                                        ["updated_at"],
+                                        "%Y-%m-%dT%H:%M:%S.%f")
             else:
                 kwargs["id"] = str(uuid.uuid4())
                 kwargs["created_at"] = datetime.datetime.now()
@@ -71,7 +77,7 @@ class BaseModel:
         '''
             Return dictionary representation of BaseModel class.
         '''
-        cp_dct = dict(self.__dict__) #why cast this
+        cp_dct = dict(self.__dict__)  # why cast this
         cp_dct['__class__'] = self.__class__.__name__
         cp_dct['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         cp_dct['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
@@ -82,4 +88,4 @@ class BaseModel:
 
     def delete(self):
         "delete the current instance from the models.storage"
-        models.storage.delete(self) #do i need self on this?
+        models.storage.delete(self)  # do i need self on this?

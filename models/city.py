@@ -8,6 +8,7 @@ from sqlalchemy.orm import relationship
 
 
 class City(BaseModel, Base):
+
     '''
         Define the class City that inherits from BaseModel.
     '''

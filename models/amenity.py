@@ -7,7 +7,9 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float
 from sqlalchemy.orm import relationship
 import os
 
+
 class Amenity(BaseModel, Base):
+
     '''
         Implementation for the Amenities.
     '''

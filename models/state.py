@@ -11,6 +11,7 @@ from models.city import City
 
 
 class State(BaseModel, Base):
+
     '''
         Implementation for the State.
     '''

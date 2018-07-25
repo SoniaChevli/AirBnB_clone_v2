@@ -9,6 +9,7 @@ from sqlalchemy.orm import relationship
 
 
 class Review(BaseModel, Base):
+
     '''
         Implementation for the Review.
     '''

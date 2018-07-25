@@ -8,6 +8,7 @@ from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
+
     '''
         Definition of the User class
     '''
@@ -18,4 +19,3 @@ class User(BaseModel, Base):
     last_name = Column(String(128), nullable=True)
     places = relationship("Place", cascade='all, delete', backref='user')
     reviews = relationship("Review", cascade='all, delete', backref='user')
-    
