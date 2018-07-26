@@ -2,9 +2,9 @@
 # sets up web servers for deployment of web_static
 sudo apt-get -y update
 sudo apt-get install -y nginx
-if [ ! -d /data/web_static/releases/test/ ]; then
-    sudo mkdir -p /data/web_static/releases/test/;
-fi
+sudo mkdir -p /data/ data/web_static /data/web_static/releases/ /
+sudo mkdir -p data/web_static/shared/ /data/web_static/releases/test/
+
 simple_html="<html>
   <head>
   </head>
