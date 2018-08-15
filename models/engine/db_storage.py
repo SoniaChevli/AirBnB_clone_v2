@@ -13,12 +13,11 @@ class DBStorage:
     def __init__(self):
         #change to environmental variables
         self.__engine = create_engine(
-            'mysql+mysqldb://{}:{}@{}/{}'.format(
-                os.getenv("HBNB_MYSQL_USER"),
-                os.getenv("HBNB_MYSQL_PWD"),
-                os.getenv("HBNB_MYSQL_HOST"),
-                os.getenv("HBNB_MYSQL_DB"),
-                pool_pre_ping=True))
+            'mysql+mysqldb://{}:{}@{}/{}'.format(os.getenv("HBNB_MYSQL_USER"),
+                                                 os.getenv("HBNB_MYSQL_PWD"),
+                                                 os.getenv("HBNB_MYSQL_HOST"),
+                                                 os.getenv("HBNB_MYSQL_DB"),
+                                                 pool_pre_ping=True))
 
         #Base.metadata.create_all(self.__engine) #maybe not necessary?
         if os.getenv("HBNB_ENV") == "test":
@@ -28,6 +27,7 @@ class DBStorage:
         "query the current db for all objects depending on cls type"
         a = {}
         if cls:
+            cls = eval(cls)
             for i in self.__session.query(cls).all():
                 a["{}.{}".format(i.__class__.__name__, i.id)] = i
         else:
