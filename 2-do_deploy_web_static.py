@@ -9,10 +9,10 @@ import datetime
 import os.path
 
 
-
 env.hosts = ['104.196.182.229', '35.196.48.12']
 env.user = "ubuntu"
 env.key_filename = "~/.ssh/holberton"
+
 
 def do_pack():
     ''' generates a .tgz archive '''
@@ -25,15 +25,13 @@ def do_pack():
     except:
         return None
 
+
 def do_deploy(archive_path):
     ''' distributes an archive to web server '''
 
     filename = archive_path.split('/')[-1]
     archivefile = filename.split('.')[0]
     archivefolder = ("/data/web_static/releases/{}".format(archivefile))
-
-
-
 
     put(archive_path, "/tmp/{}".format(filename))
     run("mkdir -p {}".format(archivefolder))
