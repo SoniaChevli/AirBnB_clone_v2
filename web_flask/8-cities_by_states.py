@@ -18,7 +18,7 @@ def teardown(value):
 @app.route('/states_list', strict_slashes=False)
 def state_list():
     ''' /states_list: adds a list of states to html '''
-    if os.env('HBNB_TYPE_STORAGE') is 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') is 'db':
         states = storage.all(State)
     else:
         states = storage.all("State")
@@ -30,7 +30,7 @@ def state_list():
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
     ''' shows all the states with cities'''
-    if os.env('HBNB_TYPE_STORAGE') is 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') is 'db':
         states = storage.all(State)
     else:
         states = storage.all("State")
