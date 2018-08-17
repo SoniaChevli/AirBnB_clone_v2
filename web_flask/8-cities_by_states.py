@@ -9,6 +9,7 @@ from models.state import State
 
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def teardown(value):
     '''removes cirrent sqlalchemy session '''
