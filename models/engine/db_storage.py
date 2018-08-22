@@ -5,6 +5,7 @@ import os
 import models
 from models import State, User, Review, Place, City, Amenity
 
+
 class DBStorage:
     __engine = None
     __session = None
@@ -12,12 +13,12 @@ class DBStorage:
     def __init__(self):
         #change to environmental variables
         self.__engine = create_engine(
-        'mysql+mysqldb://{}:{}@{}/{}'.format(
-            os.getenv("HBNB_MYSQL_USER"),
-            os.getenv("HBNB_MYSQL_PWD"),
-            os.getenv("HBNB_MYSQL_HOST"),
-            os.getenv("HBNB_MYSQL_DB"),
-        pool_pre_ping=True))
+            'mysql+mysqldb://{}:{}@{}/{}'.format(
+                os.getenv("HBNB_MYSQL_USER"),
+                os.getenv("HBNB_MYSQL_PWD"),
+                os.getenv("HBNB_MYSQL_HOST"),
+                os.getenv("HBNB_MYSQL_DB"),
+                pool_pre_ping=True))
 
         #Base.metadata.create_all(self.__engine) #maybe not necessary?
         if os.getenv("HBNB_ENV") == "test":
@@ -63,9 +64,9 @@ class DBStorage:
     def reload(self):
         "create all tables in the db"
         Base.metadata.create_all(self.__engine)
-        Session = scoped_session(sessionmaker(bind=self.__engine, expire_on_commit=False))
+        Session = scoped_session(sessionmaker(bind=self.__engine,
+                                              expire_on_commit=False))
         self.__session = Session()
-
 
     def close(self):
         ''' calls remove method on __session '''
