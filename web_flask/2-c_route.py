@@ -23,7 +23,8 @@ def HBNB():
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
     ''' /c/<text>: displays C followed by the given text '''
-    return ('C {}'.format(str(text)))
+    mystr = 'C {}'.format(text)
+    return mystr.replace("_", " ")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
